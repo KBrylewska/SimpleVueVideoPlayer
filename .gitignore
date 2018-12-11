@@ -59,3 +59,6 @@ typings/
 
 # next.js build output
 .next
+
+# large media files
+dist/media
