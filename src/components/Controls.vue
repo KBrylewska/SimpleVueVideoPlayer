@@ -23,7 +23,6 @@
 	})
 
 	export default class Controls extends Vue {
-		public title: string;
 		constructor() {
 			super();
 		}
@@ -35,8 +34,8 @@
 
 	.controls {
 		background-color: $cl-dark;
-		width: 100%;
+		/*width: 100%;
 		height: 50px;
-		display: flex;
+		display: flex;*/
 	}
 </style>

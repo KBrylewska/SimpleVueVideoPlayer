@@ -1,7 +1,7 @@
 <template>
 	<div id="app" class="app">
 		<h1 class="app-headline">Simple Vue Video Player</h1>
-		<Player> </Player>
+		<Player id="exampleid"></Player>
 	</div>
 </template>
 
@@ -9,6 +9,7 @@
 	import Vue from 'vue';
 	import Component from 'vue-class-component';
 	import Vuex, { StoreOptions } from 'vuex';
+	import store from './../store';
 	import Player from './Player.vue';
 
 	@Component({
@@ -18,9 +19,15 @@
 	})
 
 	export default class App extends Vue {
-		public title: string;
 		constructor() {
 			super();
+		}
+		mounted () {
+			//optimalization here needed and some auto-generatedID or something
+			const player: HTMLVideoElement = document.getElementsByTagName('video') ? document.getElementsByTagName('video')[0] : null;
+			if (player) {
+				store.commit('loadVideo', player);
+			}	
 		}
 	}
 </script>

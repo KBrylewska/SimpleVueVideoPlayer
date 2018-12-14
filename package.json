@@ -48,6 +48,7 @@
 		"@types/doubleclick-gpt": "0.0.3",
 		"eventemitter3": "^3.1.0",
 		"promise-polyfill": "8.1.0",
+		"vue-slide-bar": "^1.1.9",
 		"vue-slider-component": "^2.8.2",
 		"vuex-class": "^0.3.1"
 	}
