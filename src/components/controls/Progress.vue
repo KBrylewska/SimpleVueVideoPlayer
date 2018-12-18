@@ -1,54 +1,64 @@
 <template>
 	<div class="progress-bar">
-		{{ position }} / {{ duration}}
-		<VueSlideBar 
-			:value="position"
-			:min="0"
-      		:max="duration"
-			:showTooltip="false"
-			:speed="0"
-			@input="input"
-			:lineHeight="6" ></VueSlideBar>
+		{{ bar }} // {{  position}} / {{ duration}}
+		<vueSlider
+			ref="progress"
+			v-model="bar"
+			v-bind="options"
+			:max="duration"
+		></vueSlider>
+
 	</div>
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import Component from 'vue-class-component';
+	import { Vue, Component, Watch } from 'vue-property-decorator';
 	import Vuex, { StoreOptions } from 'vuex';
 	import store from './../../store';
+	import { progressOptions } from './defaultVueSliderOptions';
 
 	const VueSlideBar = require('vue-slide-bar');
+	const vueSlider = require('vue-slider-component');
 
 	@Component({
 		components: {
-			VueSlideBar
+			VueSlideBar,
+			vueSlider,
 		}
 	})
 
 	export default class Progress extends Vue {
-		//public position: number = store.state.position;
+		private progressBar: number = 0;
+		public options: any = progressOptions;
 		constructor() {
 			super();
 		}
+		get bar() {
+			return this.progressBar;
+		}
+		set bar(value: number) {
+			this.progressBar = value;
+		}
 		get position() {
-			console.log(store.state.position);
 			return store.state.position;
-			//console.log('get' + store.state.player ? store.state.player.currentTime : 'kotek');
-			//return store.state.player ? store.state.player.currentTime : 0;
 		}
 		set position(value: number) {
-			//console.log('set' + store.state.player ? store.state.player.currentTime : 'piesek');
-			console.log("set " + value);
-			//store.commit('setCurrentPosition', value);
+			store.commit('setCurrentPosition', value);
+		}
+
+		@Watch('position', { immediate: true, deep: true })
+  		onPositionChanged(val: number, oldVal: number) { 
+			this.bar = val;
+		}
+
+		@Watch('bar', { immediate: true, deep: true })
+  		onBarChanged(val: number, oldVal: number) {
+			if (val !== this.position) {
+				this.position = val;
+			}
 		}
 		get duration() {
-			//console.log("get " + store.state.duration);
 			return store.state.duration;
-		}
-		input(value: number) {
-			console.log('Input' + value);
-			store.commit('setCurrentPosition', value);
 		}
 	}
 </script>
@@ -57,5 +67,6 @@
 	@import '../../assets/styles/variables.scss';
 	
 	.progress-bar {
+		color: #fff;
 	}
 </style>

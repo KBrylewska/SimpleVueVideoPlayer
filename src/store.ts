@@ -29,16 +29,10 @@ const state: IState = {
 };
 
 const mutations: MutationTree<IState> = {
-    setMute: (state) => { 
-        console.log('is muted' + state.muted + '   ' + state.player.muted);
-        if (state.muted) {
-            state.muted = false;
-            state.player.muted = false;
-        }
-        else {
-            state.muted = true;
-            state.player.muted = true;
-        }
+    setMute: (state, muted: boolean) => {
+        state.muted = muted;
+        state.player.muted = muted;
+        
     },
     play: (state) => {
         if (state.paused) {
@@ -64,7 +58,9 @@ const mutations: MutationTree<IState> = {
     setCurrentPosition: (state, position: number) => {
         state.position = position;
         //emit event...
-        state.player.currentTime = state.position;
+        if (state.player) {
+            state.player.currentTime = state.position;
+        }
     },
     setVolume: (state, value: number) => {
         state.volume = value;
@@ -75,15 +71,18 @@ const mutations: MutationTree<IState> = {
 
         //this function can not be in store -> actions or emit event and catch it in component
         state.player.addEventListener("durationchange", () => {
-            console.log('duration ' + player.duration);
             state.duration = player.duration;
         });
+
         //is debounced naturally, don't add debounce
         state.player.addEventListener('timeupdate', () => {
-            console.log('store ' + state.position + '   player ' + state.player.currentTime)
+
             if (state.position !== state.player.currentTime) {
-                //state.position = state.player.currentTime
+                state.position = state.player.currentTime
             };
+        });
+        state.player.addEventListener('ended', () => {
+            state.paused = true;
         });
     },
     changeFullScreen: (state) => {
