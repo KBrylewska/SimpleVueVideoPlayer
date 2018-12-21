@@ -1,6 +1,5 @@
 <template>
     <div class="volume">
-		{{ muted }} / {{ volume }} // {{ bar }}
         <button class="volume-mute" v-on:click="mute()" v-bind:class="{ 'is-muted' : muted }">Mute</button>
 		<div class="volume-bar">
 			<vueSlider
@@ -90,16 +89,32 @@
     @import '../../assets/styles/defaults.scss';
     
 	.volume {
+		width: calc(30% - 1px);
+		float: left;
+		&::after {
+			content: '';
+			display: block;
+			clear: both;
+		}
 		&-mute {
 			background-color: transparent;
+			float: left;
 			width: 50px;
+			height: 50px;
 			margin-left: 20px;
 			color: $cl-light;
 			cursor: pointer;
+			&:hover {
+				text-shadow: 1px 1px 5px $cl-attention;
+			}
 			&.is-muted {
-				color: green;
+				color: $cl-attention;
 			}
 		}
-		&-bar {}
+		&-bar {
+			width: calc(100% - 80px);
+			float: left;
+			margin-top: 13px;
+		}
 	}
 </style>

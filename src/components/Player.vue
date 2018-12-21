@@ -1,7 +1,7 @@
 <template>
   <div :id="id" class="player-container" v-bind:class="{ 'is-fullScreen': fullScreen }">
 
-	<button class="player-fullscreen" v-on:click="changeFullscreen">FULLSCREEN {{ fullScreen }}</button>
+	<button class="player-fullscreen" v-on:click="changeFullscreen">FULLSCREEN</button>
 	<video preload="auto">
 		<source src="dist/media/bunny.mp4" type="video/mp4">
 		Your browser does not support the video tag.
@@ -15,6 +15,7 @@
 	import Vuex, { StoreOptions } from 'vuex';
 	import Controls from './Controls.vue';
 	import store from './../store';
+	import { Document, HTMLElement } from './interfaces';
 
 	@Component({
 		components: {
@@ -28,28 +29,29 @@
 			super();
 		}
 		get fullScreen() {
-			console.log(this.id)
 			return store.state.fullScreen;
 		}
-  		changeFullscreen() {
-			const container: any = document.getElementById(this.id) || null;
-			console.log('full screen changed');
-			if (container && document.fullscreenEnabled) {
+		public changeFullscreen() {
+			const container = document.getElementById(this.id) || null;
+			const isInFullScreen: any = document.fullscreenElement;
+			/*if (container && document.fullscreenEnabled) {
 				if (container.requestFullscreen) {
 					container.requestFullscreen();
-				} else if (container.mozRequestFullScreen) { /* Firefox */
+				} else if (container.mozRequestFullScreen) {
 					container.mozRequestFullScreen();
-				} else if (container.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+				} else if (container.webkitRequestFullscreen) {
 					container.webkitRequestFullscreen();
-				} else if (container.msRequestFullscreen) { /* IE/Edge */
+				} else if (container.msRequestFullscreen) {
 					container.msRequestFullscreen();
 				}
-			}
+			}*/
 		}
 	}
 </script>
 
 <style lang="scss">
+	@import '../assets/styles/variables.scss';
+
 	.player {
 		&-container {
 			position: relative;
@@ -61,6 +63,11 @@
 			top: 0;
 			right: 0;
 			z-index: 15;
+			background-color: $cl-dark;
+			color: $cl-light;
+			padding: 10px;
+			cursor: pointer;
+			border-radius: 0 0 0 5px;
 		}
 	}
 	video {

@@ -1,5 +1,9 @@
 @import './variables.scss';
 
+*:focus {
+    outline: 0;
+}
+
 button {
     border: 0;
 }

@@ -1,6 +1,5 @@
 <template>
 	<div class="progress-bar">
-		{{ bar }} // {{  position}} / {{ duration}}
 		<vueSlider
 			ref="progress"
 			v-model="bar"
@@ -24,7 +23,7 @@
 		components: {
 			VueSlideBar,
 			vueSlider,
-		}
+		},
 	})
 
 	export default class Progress extends Vue {
@@ -47,7 +46,7 @@
 		}
 
 		@Watch('position', { immediate: true, deep: true })
-  		onPositionChanged(val: number, oldVal: number) { 
+  		onPositionChanged(val: number, oldVal: number) {
 			this.bar = val;
 		}
 
@@ -68,5 +67,8 @@
 	
 	.progress-bar {
 		color: #fff;
+		width: calc(70% - 51px);
+		float: left;
+		margin-top: 13px;
 	}
 </style>

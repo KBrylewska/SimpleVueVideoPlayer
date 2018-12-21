@@ -34,6 +34,7 @@
         background-color: transparent;
         height: 50px;
         width: 50px;
+        float: left;
         cursor: pointer;
         &.is-paused {
             &::after {

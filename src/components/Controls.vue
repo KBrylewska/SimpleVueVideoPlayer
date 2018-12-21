@@ -34,8 +34,10 @@
 
 	.controls {
 		background-color: $cl-dark;
-		/*width: 100%;
-		height: 50px;
-		display: flex;*/
+		&::after {
+			content: '';
+			display: block;
+			clear: both;
+		}
 	}
 </style>
