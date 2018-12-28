@@ -37,7 +37,7 @@ export const mutations: MutationTree<IState> = {
     [MUTATIONS.SET_VIDEO]: (state, player: HTMLVideoElement) => {
         state.player = player;
     },
-    changeFullScreen: (state) => {
+    [MUTATIONS.SET_FULLSCREEN]: (state) => {
         state.fullScreen = state.fullScreen ? false : true;
     },
 };

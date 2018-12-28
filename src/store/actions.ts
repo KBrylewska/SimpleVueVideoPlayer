@@ -23,16 +23,19 @@ export const actions: ActionTree<IState, any> = {
             state.paused = true;
         });
     },
-    [ACTIONS.CHANGE_VOLUME]: ({ commit, state }, value) => {
+    [ACTIONS.CHANGE_VOLUME]: ({ commit }, value) => {
         commit(MUTATIONS.SET_VOLUME, value);
     },
-    [ACTIONS.CHANGE_POSITION]: ( { commit, state }, position) => {
+    [ACTIONS.CHANGE_POSITION]: ( { commit }, position) => {
         commit(MUTATIONS.SET_POSITION, position);
     },
-    [ACTIONS.MUTE]: ( { commit, state }, muted ) => {
+    [ACTIONS.MUTE]: ( { commit }, muted ) => {
         commit(MUTATIONS.SET_MUTE, muted);
     },
-    [ACTIONS.PLAY]: ( { commit, state } ) => {
+    [ACTIONS.PLAY]: ( { commit } ) => {
         commit(MUTATIONS.SET_PLAY);
+    },
+    [ACTIONS.CHANGE_FULLSCREEN]: ({ commit }, value) => {
+        commit(MUTATIONS.SET_FULLSCREEN, value);
     },
 };

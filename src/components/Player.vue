@@ -1,6 +1,6 @@
 <template>
   <div :id="id" class="player-container" v-bind:class="{ 'is-fullScreen': fullScreen }">
-    <button class="player-fullscreen" v-on:click="changeFullscreen">FULLSCREEN</button>
+    <button class="player-fullscreen" v-on:click="changeFullscreen"></button>
     <video preload="auto">
         <source src="dist/media/bunny.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -46,6 +46,7 @@
                 } else if (container.msRequestFullscreen) {
                     container.msRequestFullscreen();
                 }
+                store.dispatch(ACTIONS.CHANGE_FULLSCREEN, true);
             } else if (isInFullScreen) {
                 if (extendedDocument.exitFullscreen) {
                     extendedDocument.exitFullscreen();
@@ -56,6 +57,7 @@
                 } else if (extendedDocument.msExitFullscreen) {
                     extendedDocument.msExitFullscreen();
                 }
+                store.dispatch(ACTIONS.CHANGE_FULLSCREEN, false);
             }
         }
         public mounted() {
@@ -75,17 +77,52 @@
             position: relative;
             display: inline-block;
             width: 100%;
+            &.is-fullScreen {
+                .player-fullscreen {
+                    &::after {
+                        transform: rotate(252deg);
+                        top: 15px;
+                        right: 20px;
+                    }
+                }
+            }
         }
         &-fullscreen {
             position: absolute;
-            top: 0;
+            top: 5px;
             right: 0;
             z-index: 15;
             background-color: $cl-dark;
             color: $cl-light;
-            padding: 10px;
+            padding: 15px 17px;
             cursor: pointer;
-            border-radius: 0 0 0 5px;
+            border-radius: 5px 0 0 5px;
+            &:hover {
+                background-color: lighten($cl-dark, 20%);
+            }
+            &::after {
+                position: absolute;
+                content: '';
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 5px 0 5px 8px;
+                transform: rotate(315deg);
+                border-color: transparent transparent transparent $cl-light;
+                top: 5px;
+                right: 7px;
+            }
+            &::before {
+                position: absolute;
+                width: 15px;
+                content: '';
+                display: block;
+                height: 2px;
+                transform: rotate(315deg);
+                background-color: $cl-light;
+                top: 15px;
+                right: 10px;
+            }
         }
     }
     video {
