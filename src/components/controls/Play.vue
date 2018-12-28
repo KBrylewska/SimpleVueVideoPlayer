@@ -4,32 +4,33 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import Component from 'vue-class-component';
+    import Vue from 'vue';
+    import Component from 'vue-class-component';
     import Vuex, { StoreOptions } from 'vuex';
     import { mapState } from 'vuex';
-    import store from './../../store';
+    import store from './../../store/store';
+    import { ACTIONS } from './../../store/action-types';
 
-	@Component({})
+    @Component({})
 
-	export default class Play extends Vue {
-		public title: string;
-		constructor() {
-			super();
+    export default class Play extends Vue {
+        public title: string;
+        constructor() {
+            super();
         }
         public play() {
-            store.commit('play');
+            store.dispatch(ACTIONS.PLAY);
         }
         get playing() {
             return store.state.paused;
         }
-	}
+    }
 </script>
 
 <style lang="scss">
     @import '../../assets/styles/defaults.scss';
     
-	.play-button {
+    .play-button {
         position: relative;
         background-color: transparent;
         height: 50px;
@@ -69,5 +70,5 @@
                 left: 17px;
             }
         }
-	}
+    }
 </style>

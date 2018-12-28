@@ -29,8 +29,9 @@ export const options: any = {
     piecewiseActiveStyle: null,
     tooltipStyle: null,
     labelStyle: null,
-    labelActiveStyle: null
-}
+    labelActiveStyle: null,
+};
+
 export const progressOptions: any = {
     data: null,
     eventType: 'auto',
@@ -62,5 +63,5 @@ export const progressOptions: any = {
     piecewiseActiveStyle: null,
     tooltipStyle: null,
     labelStyle: null,
-    labelActiveStyle: null
-}
+    labelActiveStyle: null,
+};

@@ -1,14 +1,16 @@
-export interface Document {
-	exitFullscreen: () => Promise<void>;
-	mozCancelFullScreen: () => Promise<void>;
-	webkitExitFullscreen: () => Promise<void>;
-	fullscreenElement: () => Promise<void>;
-	mozFullScreenElement: () => Promise<void>;
-	webkitFullscreenElement: () => Promise<void>;
+export interface IDocument extends Document {
+    exitFullscreen: () => Promise<void>;
+    mozCancelFullScreen: () => void;
+    webkitExitFullscreen: () => void;
+    fullscreenElement: () => void;
+    mozFullScreenElement: () => void;
+    webkitFullscreenElement: () => void;
+    mozExitFullscreen: () => Promise<void>;
+    msExitFullscreen: () => Promise<void>;
 }
 
-export interface HTMLElement {
-	mozRequestFullScreen: () => void;
-	webkitRequestFullscreen: () => void;
-	msRequestFullscreen: () => void;
+export interface IHTMLElement extends HTMLElement {
+    mozRequestFullScreen: () => void;
+    webkitRequestFullscreen: () => void;
+    msRequestFullscreen: () => void;
 }
