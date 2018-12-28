@@ -14,8 +14,9 @@
     import Vuex, { StoreOptions } from 'vuex';
     import Controls from './Controls.vue';
     import store from './../store/store';
-    import { IDocument, IHTMLElement } from './interfaces';
+    import { IDocument, IHTMLElement } from './../helpers/interfaces';
     import { ACTIONS } from './../store/action-types';
+    import { fullScreenHelper } from './../helpers/fullscreenHelper';
 
     @Component({
         components: {
@@ -24,7 +25,7 @@
     })
 
     export default class Player extends Vue {
-         @Prop({ default: 'simplevuevideoplayer' }) private id!: string;
+        @Prop({ default: 'simplevuevideoplayer' }) private id!: string;
         constructor() {
             super();
         }
@@ -32,31 +33,15 @@
             return store.state.fullScreen;
         }
         public changeFullscreen() {
-            const extendedDocument = document as IDocument;
             const container: any = document.getElementById(this.id) || null;
+            const extendedDocument = document as IDocument;
             const isInFullScreen = extendedDocument.fullscreenElement;
-            // to helper maybe
+
             if (container && !isInFullScreen) {
-                if (container.requestFullscreen) {
-                    container.requestFullscreen();
-                } else if (container.mozRequestFullScreen) {
-                    container.mozRequestFullScreen();
-                } else if (container.webkitRequestFullscreen) {
-                    container.webkitRequestFullscreen();
-                } else if (container.msRequestFullscreen) {
-                    container.msRequestFullscreen();
-                }
+                fullScreenHelper.openFullScreen(container);
                 store.dispatch(ACTIONS.CHANGE_FULLSCREEN, true);
             } else if (isInFullScreen) {
-                if (extendedDocument.exitFullscreen) {
-                    extendedDocument.exitFullscreen();
-                } else if (extendedDocument.mozExitFullscreen) {
-                    extendedDocument.mozExitFullscreen();
-                } else if (extendedDocument.webkitExitFullscreen) {
-                    extendedDocument.webkitExitFullscreen();
-                } else if (extendedDocument.msExitFullscreen) {
-                    extendedDocument.msExitFullscreen();
-                }
+                fullScreenHelper.closeFullScreen(extendedDocument);
                 store.dispatch(ACTIONS.CHANGE_FULLSCREEN, false);
             }
         }

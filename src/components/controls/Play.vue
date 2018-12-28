@@ -22,6 +22,7 @@
             store.dispatch(ACTIONS.PLAY);
         }
         get playing() {
+            // getter
             return store.state.paused;
         }
     }
