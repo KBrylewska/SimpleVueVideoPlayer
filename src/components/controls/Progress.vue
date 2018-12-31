@@ -66,7 +66,7 @@
     @import 'src/assets/styles/variables.scss';
     
     .progress-bar {
-        color: #fff;
+        color: $cl-white;
         width: calc(70% - 51px);
         float: left;
         margin-top: 13px;
