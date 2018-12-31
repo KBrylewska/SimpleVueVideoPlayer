@@ -30,7 +30,7 @@
             super();
         }
         get fullScreen() {
-            return store.state.fullScreen;
+            return store.getters.isFullscreen;
         }
         public changeFullscreen() {
             const container: any = document.getElementById(this.id) || null;

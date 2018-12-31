@@ -5,6 +5,7 @@ import { MUTATIONS } from './mutation-types';
 import { IState, state } from './state';
 import { actions } from './actions';
 import { mutations } from './mutations';
+import { getters } from './getters';
 
 Vue.use(Vuex);
 
@@ -12,4 +13,5 @@ export default new Vuex.Store<IState>({
     state,
     mutations,
     actions,
+    getters,
 });

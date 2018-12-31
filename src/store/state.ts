@@ -6,7 +6,6 @@ export interface IState {
     fullScreen: boolean;
     player: HTMLVideoElement;
     duration: number;
-    resize: boolean;
 }
 
 export const state: IState = {
@@ -17,5 +16,4 @@ export const state: IState = {
     fullScreen: false,
     player: null,
     duration: 0,
-    resize: false,
 };

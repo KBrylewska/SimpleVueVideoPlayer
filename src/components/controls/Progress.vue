@@ -39,7 +39,7 @@
         }
         get position() {
             // getter
-            return store.state.position;
+            return store.getters.position;
         }
         set position(value: number) {
             store.dispatch(ACTIONS.CHANGE_POSITION, value);
@@ -57,7 +57,7 @@
             }
         }
         get duration() {
-            return store.state.duration;
+            return store.getters.durations;
         }
     }
 </script>

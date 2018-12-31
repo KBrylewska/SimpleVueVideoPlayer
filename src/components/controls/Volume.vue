@@ -40,13 +40,13 @@
             this.vbar = value;
         }
         get muted() {
-            return store.state.muted;
+            return store.getters.isMuted;
         }
         set muted(value: boolean) {
             store.dispatch(ACTIONS.MUTE, value);
         }
         get volume() {
-            return store.state.volume;
+            return store.getters.volume;
         }
 
         public mute() {

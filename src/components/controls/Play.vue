@@ -23,7 +23,9 @@
         }
         get playing() {
             // getter
-            return store.state.paused;
+            console.log(store.state.paused);
+            console.log(store.getters.isPaused);
+            return store.getters.isPaused;
         }
     }
 </script>
