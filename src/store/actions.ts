@@ -7,7 +7,6 @@ import { Store } from 'vuex';
 export const actions: ActionTree<IState, any> = {
     [ACTIONS.INIT_VIDEO]: ( { commit, state }, player ) => {
         commit(MUTATIONS.SET_VIDEO, player);
-        // this function can not be in store -> actions or emit event and catch it in component
         state.player.addEventListener('durationchange', () => {
             state.duration = player.duration;
         });

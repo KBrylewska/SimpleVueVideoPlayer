@@ -24,8 +24,7 @@ export const mutations: MutationTree<IState> = {
     },
     [MUTATIONS.SET_POSITION]: (state, position: number) => {
         state.position = position;
-        // emit event...
-        // czy to w ogole nie powinien byc kolejny commit
+
         if (state.player) {
             state.player.currentTime = state.position;
         }
