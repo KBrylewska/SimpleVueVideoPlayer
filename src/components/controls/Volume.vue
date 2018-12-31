@@ -37,7 +37,7 @@
             return this.vbar;
         }
         set bar(value: number) {
-            this.changeBarValue(value);
+            this.vbar = value;
         }
         get muted() {
             return store.state.muted;
@@ -48,37 +48,22 @@
         get volume() {
             return store.state.volume;
         }
-        set volume(value: number) {
-            store.dispatch(ACTIONS.CHANGE_VOLUME, value);
-        }
-        public changeBarValue(value: number) {
-            //fix this
-            if (this.vbar !== value && !this.muted) {
-                this.volume = value;
-                this.vbar = value;
-            }
-            else if (this.vbar === value && !this.muted) {
-                this.vbar = value;
-            }
-            else if (this.vbar === value && this.muted) {
-                this.vbar = value;
-            }
-            else if (this.vbar !== value && this.muted && this.vbar === this.volume) {
-                this.vbar = value;
-            }
-            else if (this.vbar !== value && this.muted) {
-                this.vbar = value;
-                this.muted = false;
-            }
-        }
+
         public mute() {
             if (this.muted) {
                 this.muted = false;
-                this.changeBarValue(this.volume);
+                this.bar = this.volume;
             } else {
                 this.muted = true;
-                this.changeBarValue(0);
+                this.bar = 0;
             }
+        }
+        @Watch('bar', { immediate: true, deep: true })
+        private onBarChanged(value: number, oldVal: number) {
+            if (!this.muted) {
+                store.dispatch(ACTIONS.CHANGE_VOLUME, value);
+            }
+
         }
     }
 </script>

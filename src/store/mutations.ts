@@ -31,8 +31,10 @@ export const mutations: MutationTree<IState> = {
         }
     },
     [MUTATIONS.SET_VOLUME]: (state, value: number) => {
-        state.volume = value;
-        state.player.volume = value;
+        if (state.player) {
+            state.volume = value;
+            state.player.volume = value;
+        }
     },
     [MUTATIONS.SET_VIDEO]: (state, player: HTMLVideoElement) => {
         state.player = player;
