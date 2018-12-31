@@ -12,9 +12,9 @@
 <script lang="ts">
     import { Vue, Component, Watch } from 'vue-property-decorator';
     import Vuex, { StoreOptions } from 'vuex';
-    import store from './../../store/store';
-    import { progressOptions } from './defaultVueSliderOptions';
-    import { ACTIONS } from './../../store/action-types';
+    import store from 'src/store/store';
+    import { progressOptions } from 'src/components/controls/defaultVueSliderOptions';
+    import { ACTIONS } from 'src/store/action-types';
 
     const vueSlider = require('vue-slider-component');
 
@@ -57,13 +57,13 @@
             }
         }
         get duration() {
-            return store.getters.durations;
+            return store.getters.duration;
         }
     }
 </script>
 
 <style lang="scss">
-    @import '../../assets/styles/variables.scss';
+    @import 'src/assets/styles/variables.scss';
     
     .progress-bar {
         color: #fff;

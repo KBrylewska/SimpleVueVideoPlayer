@@ -9,7 +9,7 @@
     import Vue from 'vue';
     import Component from 'vue-class-component';
     import Vuex, { StoreOptions } from 'vuex';
-    import Player from './Player.vue';
+    import Player from 'components/Player.vue';
 
     @Component({
         components: {
@@ -26,7 +26,7 @@
 </script>
 
 <style lang="scss">
-    @import '../assets/styles/variables.scss';
+    @import 'src/assets/styles/variables.scss';
 
     body {
         background-color: $cl-light;

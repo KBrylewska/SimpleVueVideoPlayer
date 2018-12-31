@@ -14,9 +14,9 @@
 <script lang="ts">
     import { Vue, Component, Watch } from 'vue-property-decorator';
     import Vuex, { StoreOptions } from 'vuex';
-    import store from './../../store/store';
-    import { options } from './defaultVueSliderOptions';
-    import { ACTIONS } from './../../store/action-types';
+    import store from 'src/store/store';
+    import { options } from 'src/components/controls/defaultVueSliderOptions';
+    import { ACTIONS } from 'src/store/action-types';
 
     const vueSlider = require('vue-slider-component');
 
@@ -69,7 +69,7 @@
 </script>
 
 <style lang="scss">
-    @import '../../assets/styles/defaults.scss';
+    @import 'src/assets/styles/defaults.scss';
     
     .volume {
         width: calc(30% - 1px);

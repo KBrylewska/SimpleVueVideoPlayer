@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = {
 	entry: './src/index.ts',
@@ -17,7 +18,7 @@ module.exports = {
 			loader: 'ts-loader',
 			exclude: /node_modules/,
 			options: {
-			appendTsSuffixTo: [/\.vue$/],
+				appendTsSuffixTo: [/\.vue$/],
 			}
 		},
 		{
@@ -53,8 +54,9 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.ts', '.js', '.vue', '.json'],
+		plugins: [ new TsconfigPathsPlugin({ configFile: "./tsconfig.json" }) ],
 		alias: {
-		'vue$': 'vue/dist/vue.esm.js'
+			'vue$': 'vue/dist/vue.esm.js',
 		}
 	},
 	devServer: {
@@ -68,8 +70,7 @@ module.exports = {
 	plugins: [
 		// make sure to include the plugin!
 		new VueLoaderPlugin()
-	]
-	}
+	]}
 
 	if (process.env.NODE_ENV === 'production') {
 	module.exports.devtool = '#source-map'

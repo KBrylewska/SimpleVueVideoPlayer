@@ -13,6 +13,14 @@
 			"es2015",
 			"dom"
 		],
+		"paths": {
+            "components/*": [
+                "src/components/*"
+			],
+			"src/*": [
+                "src/*"
+			],
+        }
 	},
 	"include": [
 		"./**/*"

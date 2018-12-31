@@ -13,10 +13,10 @@
     import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
     import Vuex, { StoreOptions } from 'vuex';
     import Controls from './Controls.vue';
-    import store from './../store/store';
-    import { IDocument, IHTMLElement } from './../helpers/interfaces';
-    import { ACTIONS } from './../store/action-types';
-    import { fullScreenHelper } from './../helpers/fullscreenHelper';
+    import store from 'src/store/store';
+    import { IDocument, IHTMLElement } from 'src/helpers/interfaces';
+    import { ACTIONS } from 'src/store/action-types';
+    import { fullScreenHelper } from 'src/helpers/fullscreenHelper';
 
     @Component({
         components: {
@@ -55,7 +55,7 @@
 </script>
 
 <style lang="scss">
-    @import '../assets/styles/variables.scss';
+    @import 'src/assets/styles/variables.scss';
 
     .player {
         &-container {

@@ -10,9 +10,9 @@
     import Vue from 'vue';
     import Component from 'vue-class-component';
     import Vuex, { StoreOptions } from 'vuex';
-    import Play from './controls/Play.vue';
-    import Progress from './controls/Progress.vue';
-    import Volume from './controls/Volume.vue';
+    import Play from 'components/controls/Play.vue';
+    import Progress from 'components/controls/Progress.vue';
+    import Volume from 'components/controls/Volume.vue';
 
     @Component({
         components: {
@@ -30,7 +30,7 @@
 </script>
 
 <style lang="scss">
-    @import '../assets/styles/variables.scss';
+    @import 'src/assets/styles/variables.scss';
 
     .controls {
         background-color: $cl-dark;

@@ -8,8 +8,8 @@
     import Component from 'vue-class-component';
     import Vuex, { StoreOptions } from 'vuex';
     import { mapState } from 'vuex';
-    import store from './../../store/store';
-    import { ACTIONS } from './../../store/action-types';
+    import store from 'src/store/store';
+    import { ACTIONS } from 'src/store/action-types';
 
     @Component({})
 
@@ -22,16 +22,13 @@
             store.dispatch(ACTIONS.PLAY);
         }
         get playing() {
-            // getter
-            console.log(store.state.paused);
-            console.log(store.getters.isPaused);
             return store.getters.isPaused;
         }
     }
 </script>
 
 <style lang="scss">
-    @import '../../assets/styles/defaults.scss';
+    @import 'src/assets/styles/defaults.scss';
     
     .play-button {
         position: relative;
